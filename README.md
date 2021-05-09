@@ -1,2 +1,3 @@
-# zero-waste-project
-lol
+# Interashtive
+### Our Zero Waste Project
+Coming soon...
