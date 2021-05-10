@@ -7,22 +7,40 @@
     >
       <v-toolbar-title class = "font-weight-medium"> INTERASHTIVE DATA </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn outlined rounded color = "white--text">
-        <span>LOGOUT</span>
-        <v-icon right>mdi-exit-to-app</v-icon>
-      </v-btn>
     </v-app-bar>
 
     <v-main>
-      <Table />
+      Welcome to our website, No registeration form yet. Contact admin to gain access.
+      <Form @login-request="checkLogin" />
     </v-main>
   </v-app>
 </template>
 
 <script>
-  import Table from '@/components/Table'
+import Form from "./components/Form"
   export default {
     name: 'App',
-    components: { Table },
+    components: {
+      Form
+    },
+    methods: {
+      async checkLogin(request){
+        const res = await fetch("api/users")
+        var data = await res.json()
+        console.log(data)
+        console.log(request)
+        var exist=false;
+        for(var i=0;i < data.length;i++){
+          if(data[i].Username == request.Username 
+          && data[i].Password == request.Password) exist = true
+        }
+        if(exist){
+          alert("USER EXIST, LOGIN SUCCESSFUL");
+        }else{
+          alert("WRONG USERNAME OR PASSWORD, PLEASE TRY AGAIN")
+        }
+      },
+      
+    }
   }
 </script>
