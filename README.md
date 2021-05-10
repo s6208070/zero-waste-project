@@ -4,8 +4,9 @@ lol
 # Interashtive
 ### Our Zero Waste Project
 Coming soon...
+ 
 
-run this to start server: npm run serve
-run this to start database: npm run json-databse
-check "fake" json database: db.json
-10/5/2021 by Heart
+# 10/5/2021 Changes by Heart
+1. run this to start server: npm run serve
+2. run this to start database: npm run json-databse
+3. check "fake" json database: db.json
