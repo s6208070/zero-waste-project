@@ -17,22 +17,39 @@
     <v-main>
       <div> hello </div>
       <h1> You are looking for: </h1>
-      <h4> {{userRequest.Province}}, {{userRequest.Amphoe}}, {{userRequest.Tambon}}, right? <br> <br> </h4>
+      <h3 v-if="this.userReq.all"> EVERYTHING, right? </h3>
+      <h4 v-else> {{this.userReq.p}}, {{this.userReq.a}}, {{this.userReq.t}}  right? <br> <br> </h4>
       <div> TODO: Create the Fucking table </div>
+
+      <Table :userReq = "userReq"/>
     </v-main>
   </v-app>
 </template>
+
 <script>
+import Table from "@/components/Table"
 export default {
   name: 'GarbageData',
+  components: {
+    Table,
+  },
   data() {
       return{
-          userRequest: []
+          userReq: []
       }
-    },
-    created() {
-        this.userRequest = this.$route.params.data
-        console.log(this.req)
-    }
+   },
+  created(){
+    const rec = this.$route.query;
+    this.userReq = {
+            all: true,
+            p: "",
+            a: "",
+            t: "",
+          }
+    if(typeof rec.province !== 'undefined') this.userReq.p = this.$route.query.province;
+    if(typeof rec.amphoe !== 'undefined') this.userReq.a = this.$route.query.amphoe;
+    if(typeof rec.tambon !== 'undefined') this.userReq.t = this.$route.query.tambon;
+    if(typeof rec.all !== 'undefined') this.userReq.all = this.$route.query.all;
+  }
 }
 </script>

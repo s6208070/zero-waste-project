@@ -12,5 +12,18 @@
         "Username": "Hello",
         "Password": "World"
     }
+],
+"garbages":[
+    {
+        "id": "",
+        "timestamp": "BRO",
+        "coordinates": "",
+        "province": "",
+        "amphoe": "",
+        "tambon": "",
+        "userid": "",
+        "weight": "",
+        "status": ""
+    }
 ]
 }

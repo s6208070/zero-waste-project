@@ -2,145 +2,60 @@
   <div class = "ma-4">
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="Garbage"
       item-key="name"
       class="elevation-1"
-      :search="search"
-      :custom-filter="filterOnlyCapsText"
     >
-      <template v-slot:top>
-        <v-text-field
-          v-model="search"
-          label="Search (UPPER CASE ONLY)"
-          class="mx-4"
-        ></v-text-field>
-      </template>
     </v-data-table>
+    <button v-on:click="loadData"> CHECK </button>
   </div>
 </template>
 
 <script>
   export default {
+    name: "Table",
     data () {
       return {
         search: '',
-        calories: '',
-        desserts: [
-          {
-            name: 'Frozen Yogurt',
-            calories: 159,
-            fat: 6.0,
-            carbs: 24,
-            protein: 4.0,
-            iron: '1%',
-          },
-          {
-            name: 'Ice cream sandwich',
-            calories: 237,
-            fat: 9.0,
-            carbs: 37,
-            protein: 4.3,
-            iron: '1%',
-          },
-          {
-            name: 'Eclair',
-            calories: 262,
-            fat: 16.0,
-            carbs: 23,
-            protein: 6.0,
-            iron: '7%',
-          },
-          {
-            name: 'Cupcake',
-            calories: 305,
-            fat: 3.7,
-            carbs: 67,
-            protein: 4.3,
-            iron: '8%',
-          },
-          {
-            name: 'Gingerbread',
-            calories: 356,
-            fat: 16.0,
-            carbs: 49,
-            protein: 3.9,
-            iron: '16%',
-          },
-          {
-            name: 'Jelly bean',
-            calories: 375,
-            fat: 0.0,
-            carbs: 94,
-            protein: 0.0,
-            iron: '0%',
-          },
-          {
-            name: 'Lollipop',
-            calories: 392,
-            fat: 0.2,
-            carbs: 98,
-            protein: 0,
-            iron: '2%',
-          },
-          {
-            name: 'Honeycomb',
-            calories: 408,
-            fat: 3.2,
-            carbs: 87,
-            protein: 6.5,
-            iron: '45%',
-          },
-          {
-            name: 'Donut',
-            calories: 452,
-            fat: 25.0,
-            carbs: 51,
-            protein: 4.9,
-            iron: '22%',
-          },
-          {
-            name: 'KitKat',
-            calories: 518,
-            fat: 26.0,
-            carbs: 65,
-            protein: 7,
-            iron: '6%',
-          },
-        ],
+        Garbage: [],
+      }
+    },
+    props: {
+      userReq: {
+        type: Object,
       }
     },
     computed: {
       headers () {
         return [
           {
-            text: 'Dessert (100g serving)',
+            text: 'Timestamp',
             align: 'start',
-            sortable: false,
-            value: 'name',
+            value: 'timestamp',
           },
-          {
-            text: 'Calories',
-            value: 'calories',
-            filter: value => {
-              if (!this.calories) return true
-
-              return value < parseInt(this.calories)
-            },
-          },
-          { text: 'Fat (g)', value: 'fat' },
-          { text: 'Carbs (g)', value: 'carbs' },
-          { text: 'Protein (g)', value: 'protein' },
-          { text: 'Iron (%)', value: 'iron' },
+          { text: 'Coordinates', value: 'coordinates' },
+          { text: 'UserID', value: 'userid' },
+          { text: 'status', value: 'status' },
+          { text: 'Weight', value: 'weight' },
         ]
       },
     },
     methods: {
-      filterOnlyCapsText (value, search) {
-        return value != null &&
-          search != null &&
-          typeof value === 'string' &&
-          value.toString().toLocaleUpperCase().indexOf(search) !== -1
+      async loadData(){
+        const res = await fetch("api/garbages")
+        this.Garbage = await res.json()
+        const f = this.userReq
+        console.log(f.all)
+        if(f.all == true || f.all == "true") return
+        console.log(f.all)
+        this.Garbage = this.Garbage.filter(function(item) {
+          return item != null && item.province == f.p && item.amphoe == f.a && item.t == f.t
+        })
       },
     },
+    mounted(){
+      console.log(this.userReq.p)
+      this.loadData()
+    }
   }
 </script>

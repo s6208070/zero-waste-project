@@ -46,6 +46,8 @@
         </div>
         <input type = "submit" value="Search"/>
     </form>
+
+    <button v-on:click= "onEverything"> See everything </button>
     </v-main>
   </v-app>
 </template>
@@ -62,16 +64,13 @@ export default {
   methods: {
     onSubmit(e){
       e.preventDefault()
-      const req = {
-        Province: this.Province,
-        Amphoe: this.Amphoe,
-        Tambon: this.Tambon,
-      }
-      alert("- " + req.Province + "\n- " + req.Amphoe + "\n- " + req.Tambon)
-      this.$router.push({name:"GarbageData", params:{data: req}})
-      this.Province = ""
-      this.Amphoe = ""
-      this.Tambon = ""
+      this.$router.push({name: "GarbageData", query: {all: false, province: this.Province, amphoe: this.Amphoe, tambon: this.Tambon}})
+      this.Province = "-"
+      this.Amphoe = "-"
+      this.Tambon = "-"
+    },
+    onEverything(){
+      this.$router.push({name: "GarbageData", query: {all: true}})
     }
   }
 }
