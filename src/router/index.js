@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Search from '../views/Search.vue'
 import GarbageData from '../views/GarbageData.vue'
+import AddData from '../views/AddData.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -20,6 +21,11 @@ const routes = [
     path: '/garbagedata',
     name: 'GarbageData',
     component: GarbageData,
+  },
+  {
+    path: '/adddata',
+    nae: 'AddData',
+    component: AddData,
   }
 ]
 

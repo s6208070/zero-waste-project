@@ -1,29 +1,42 @@
 {
-"users":[
+  "users": [
     {
-        "Username": "",
-        "Password": ""
+      "Username": "",
+      "Password": ""
     },
     {
-        "Username": "Heart",
-        "Password": "Heart"
+      "Username": "Heart",
+      "Password": "Heart"
     },
     {
-        "Username": "Hello",
-        "Password": "World"
+      "Username": "Hello",
+      "Password": "World"
     }
-],
-"garbages":[
+  ],
+  "garbages": [
     {
-        "id": "",
-        "timestamp": "BRO",
-        "coordinates": "",
-        "province": "",
-        "amphoe": "",
-        "tambon": "",
-        "userid": "",
-        "weight": "",
-        "status": ""
+      "id": "",
+      "timestamp": "DUMMY",
+      "cox": "",
+      "coy": "",
+      "province": "",
+      "amphoe": "",
+      "tambon": "",
+      "userid": "",
+      "weight": "",
+      "status": "Not collected"
+    },
+    {
+      "id": "zQoNcdp",
+      "timestamp": "2021-05-05T15:13",
+      "province": "qwe",
+      "amphoe": "qwe",
+      "tambon": "qwe",
+      "cox": "123",
+      "coy": "123",
+      "userid": "123",
+      "weight": "123",
+      "status": "Not collected"
     }
-]
+  ]
 }

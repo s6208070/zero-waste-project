@@ -21,6 +21,7 @@
 
 <script>
 import Form from "@/components/Form"
+
   export default {
     name: 'Login',
     components: {
@@ -43,8 +44,9 @@ import Form from "@/components/Form"
         }
       },
       
-    }
-  }
+    },
+
+}
 </script>
 
 <style>
