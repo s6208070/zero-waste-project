@@ -10,6 +10,9 @@ public class AdditionalSystemScript : MonoBehaviour
     public GameObject SizeText;
     public GameObject OdorText;
     public GameObject VisualText;
+    public GameObject Database;
+    public GameObject NearInput;
+    public GameObject OtherInput;
     public string[] SizeCaption;
     public string[] OdorCaption;
     public string[] VisualCaption;
@@ -18,7 +21,12 @@ public class AdditionalSystemScript : MonoBehaviour
     public int InfoOdor;
     public void Apply(){
         //information
-
+        DataSystemScript data = Database.GetComponent<DataSystemScript>();
+        data.VisualLevel = InfoVisual;
+        data.OdorLevel = InfoOdor;
+        data.SizeLevel = InfoSize;
+        data.NearDetail = NearInput.GetComponent<InputField>().text;
+        data.OtherDetail = OtherInput.GetComponent<InputField>().text;
         //
         SystemManager.GetComponent<SystemScript>().BackPage(transform.parent.name);
     }

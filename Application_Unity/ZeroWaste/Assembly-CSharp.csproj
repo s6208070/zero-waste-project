@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\Additional\AdditionalSystemScript.cs" />
+     <Compile Include="Assets\Script\DataSystemScript.cs" />
      <Compile Include="Assets\Script\History\HistorySystemScript.cs" />
      <Compile Include="Assets\Script\Login\LoginScript.cs" />
      <Compile Include="Assets\Script\MainManu\MainmanuScript.cs" />
