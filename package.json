@@ -10,10 +10,11 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "express": "^4.17.1",
     "filereader": "^0.10.3",
     "json-server": "^0.16.3",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0",
+    "vue-router": "^3.5.1",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
