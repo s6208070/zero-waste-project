@@ -4,6 +4,7 @@ import Login from '../views/Login.vue'
 import Search from '../views/Search.vue'
 import GarbageData from '../views/GarbageData.vue'
 import AddData from '../views/AddData.vue'
+import Info from '../views/Info.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -24,8 +25,13 @@ const routes = [
   },
   {
     path: '/adddata',
-    nae: 'AddData',
+    name: 'AddData',
     component: AddData,
+  },
+  {
+    path: '/info',
+    name: 'Info',
+    component: Info,
   }
 ]
 

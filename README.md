@@ -21,3 +21,9 @@ Help
 2. Add template for garbage data in db.json
 3. Add actual filter
 Need "Add garbage" Page
+
+# 13-14/5/2021 Changes be Heart
+1. Add "Add garbage" Page
+2. Add option to add image - convert to base64 - yeet into json server, db.json file size is fuck up now
+3. Add "info" page, access by clicking the GarbageData's table's row
+4. Help

@@ -17,7 +17,7 @@
     </v-app-bar>
     <v-main>
       <h1> Add garbage data</h1>
-      <form @submit="addTask" class="form">
+      <form @submit="addTask" class="form" name="form">
         <div>
             <label>Province<br> </label>
             <input
@@ -90,6 +90,21 @@
                 placeholder = "Enter..."
             />
         </div>
+        <div>
+          <label> Description<br> </label>
+          <textarea 
+            rows="4" 
+            cols="50" 
+            name="comment"
+            v-model="DATA.description" 
+            form="form"
+            placeholder = "Enter..."
+          ></textarea>
+        </div>
+        <input type ="file" @change="fileChange"/> <br>
+        <img :src="previewurl"/>
+        
+
         <input type = "submit"/>
     </form>
     </v-main>
@@ -111,13 +126,16 @@ export default {
             userid: "",
             weight: "",
             status: "Not collected",
+            base64img: "not assigned",
+            description: "",
         },
+        selectedfile: null,
+        previewurl: null,
       }
     },
   methods: {
     async addTask(e){
       e.preventDefault()
-      console.log(JSON.stringify(this.DATA));
       const res = await fetch("api/garbages", {
           method: 'POST',
           headers: {
@@ -126,7 +144,38 @@ export default {
           body: JSON.stringify(this.DATA),
       })
       res.json()
+      alert("Successfully add the gargbage information. Please go back to the Search page or GarbageData page")
+      this.DATA = {
+            id: "",
+            timestamp: "",
+            province: "",
+            amphoe: "",
+            tambon: "",
+            cox: "",
+            coy: "",
+            userid: "",
+            weight: "",
+            status: "Not collected",
+            base64img: "not assigned",
+            description: "",
+        }
+        this.selectedfile = null
+        this.previewurl = null
     },
-  }
+    
+    async fileChange(e){
+      this.selectedfile = e.target.files[0];
+      if(this.selectedfile == null) return;
+      this.previewurl = URL.createObjectURL(this.selectedfile);
+      const reader = new FileReader()
+      reader.addEventListener("load", function () {
+        this.DATA.base64img = reader.result;
+      }.bind(this), false);
+      if(this.selectedfile){
+        reader.readAsDataURL(this.selectedfile)
+      } 
+    },
+  }, 
+
 }
 </script>

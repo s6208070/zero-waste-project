@@ -5,9 +5,9 @@
       :items="Garbage"
       item-key="name"
       class="elevation-1"
+      @click:row="handleClick"
     >
     </v-data-table>
-    <button v-on:click="loadData"> CHECK </button>
   </div>
 </template>
 
@@ -46,16 +46,16 @@
         const res = await fetch("api/garbages")
         this.Garbage = await res.json()
         const f = this.userReq
-        console.log(f.all)
         if(f.all == true || f.all == "true") return
-        console.log(f.all)
         this.Garbage = this.Garbage.filter(function(item) {
           return item != null && item.province == f.p && item.amphoe == f.a && item.t == f.t
         })
       },
+      handleClick(e){
+        this.$router.push({name: "Info", query: {id: e.id}})
+      }
     },
     mounted(){
-      console.log(this.userReq.p)
       this.loadData()
     }
   }
