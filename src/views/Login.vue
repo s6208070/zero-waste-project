@@ -5,9 +5,7 @@
       height = "720px"
     >
     <v-app-bar 
-      app dark color = "indigo darken-1" 
-
-      src = "https://img.freepik.com/free-vector/abstract-background-with-dots-blurry-shapes_23-2148705493.jpg?size=626&ext=jpg&ga=GA1.2.1842958395.1604448000"
+      app dark color = "grey-darken-4" 
     >
       <v-toolbar-title class = "font-weight-medium"> INTERASHTIVE DATA </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -31,6 +29,19 @@
         <Form @login-request="checkLogin" />
       </v-main>
     </v-card>
+
+    <v-footer dark>
+      <v-card
+        class = "text-center flex"
+        flat
+        tile
+        justify-center
+      >
+        <v-card-text class = "white--text text-center">
+          {{ new Date().getFullYear() }} — <strong>Interashtive Team</strong>
+        </v-card-text>
+      </v-card>
+    </v-footer>
   </v-app>
 </template>
 

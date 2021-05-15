@@ -1,8 +1,6 @@
 <template>
      <v-app-bar
-      app dark color = "indigo darken-1" 
-
-      src = "https://img.freepik.com/free-vector/abstract-background-with-dots-blurry-shapes_23-2148705493.jpg?size=626&ext=jpg&ga=GA1.2.1842958395.1604448000"
+      app dark color = "grey-darken-4" 
     >
       <v-toolbar-title class = "font-weight-medium"> INTERASHTIVE DATA </v-toolbar-title>
       <v-spacer></v-spacer>
