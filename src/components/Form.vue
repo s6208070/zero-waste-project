@@ -2,17 +2,18 @@
 <header>
     <v-card flat align = "center" class = "pt-12 pb-0" color = "transparent">
     <v-card
-        max-width = "500"
+        max-width = "450"
         align = "center"
-        class = "py-7 ma-0 rounded-lg"
+        class = "pt-10 pb-8 ma-0 rounded-xl"
     >
         <h1> Login </h1>
         <div class = "smol"></div>
 
-        <v-form class="form">
-            <v-container class = "pa-0 ma-0">
-                <v-row justify = "center" style = "height : 60px;">
-                    <v-col cols = "8">
+        <v-form class="form" @submit="onSubmit">
+            <v-container class = "pt-4 ma-0">
+                <v-row justify = "center" style = "height : 75px;">
+                    <v-icon large>mdi-account-circle</v-icon>
+                    <v-col cols = "8">    
                         <v-text-field
                             type = "text"
                             label = "Username"
@@ -23,22 +24,27 @@
                 </v-row>
 
                 <v-row justify = "center" style = "height : 100px;">
+                    <v-icon large>mdi-key</v-icon>
                     <v-col cols = "8">
                         <v-text-field
                             type = "password"
                             label = "Password"
                             v-model ="Password"
-                            required
                         ></v-text-field>
                     </v-col>
                 </v-row>
 
-                <v-btn 
-                    @click="onSubmit"
-                    dark
-                    rounded
-                    class = "purple darken-3 font-weight-medium"
-                >LOGIN</v-btn>
+                <v-row justify = "center" style = "height : 60px;">
+                    <v-col cols = "10">
+                    <v-btn 
+                        type = "submit"
+                        dark
+                        rounded
+                        class = "purple darken-3 font-weight-medium"
+                        block
+                    >LOGIN</v-btn>
+                    </v-col>
+                </v-row>
             </v-container>
         </v-form>
     </v-card>   

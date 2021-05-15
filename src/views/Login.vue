@@ -19,7 +19,7 @@
       <v-main>
         <v-img
           src = "../assets/interashtive-logo.png"
-          max-height = "110"
+          max-height = "105"
           contain
         ></v-img>
         <v-card

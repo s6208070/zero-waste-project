@@ -1,38 +1,31 @@
 <template>
   <v-app style = "overflow:auto;">
-     <v-app-bar
-      app dark color = "indigo darken-1" 
-
-      src = "https://img.freepik.com/free-vector/abstract-background-with-dots-blurry-shapes_23-2148705493.jpg?size=626&ext=jpg&ga=GA1.2.1842958395.1604448000"
-    >
-      <v-toolbar-title class = "font-weight-medium"> INTERASHTIVE DATA </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <div id="nav">
-        <router-link to="/"> Logout </router-link> -
-        <router-link to="/Search"> Search </router-link> -
-        <router-link to="/garbagedata"> Garbagedata </router-link> -
-        <router-link to="/adddata"> Add Data </router-link>
-      </div>
-      
-    </v-app-bar>
+    <Navbar/>
     <v-main>
       <div> hello </div>
       <h1> You are looking for: </h1>
       <h3 v-if="this.userReq.all"> EVERYTHING, right? </h3>
       <h4 v-else> {{this.userReq.p}}, {{this.userReq.a}}, {{this.userReq.t}}  right? <br> <br> </h4>
       <div> TODO: Create the Fucking table </div>
-
-      <Table :userReq = "userReq"/>
+      <v-card
+        flat
+        class = "tbcontain"
+        justify = "center"
+      >
+        <Table :userReq = "userReq"/>
+      </v-card>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import Table from "@/components/Table"
+import Navbar from "@/components/Navbar"
 export default {
   name: 'GarbageData',
   components: {
     Table,
+    Navbar,
   },
   data() {
       return{
@@ -54,3 +47,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .tbcontain {
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+</style>
