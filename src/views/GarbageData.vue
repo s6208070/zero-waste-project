@@ -8,7 +8,7 @@
       <v-toolbar-title class = "font-weight-medium"> INTERASHTIVE DATA </v-toolbar-title>
       <v-spacer></v-spacer>
       <div id="nav">
-        <router-link to="/"> Logout </router-link> -
+        <button @click= "logOut"> Log out </button> - 
         <router-link to="/Search"> Search </router-link> -
         <router-link to="/garbagedata"> Garbagedata </router-link> -
         <router-link to="/adddata"> Add Data </router-link>
@@ -29,6 +29,7 @@
 
 <script>
 import Table from "@/components/Table"
+import firebase from "firebase"
 export default {
   name: 'GarbageData',
   components: {
@@ -51,6 +52,17 @@ export default {
     if(typeof rec.amphoe !== 'undefined') this.userReq.a = this.$route.query.amphoe;
     if(typeof rec.tambon !== 'undefined') this.userReq.t = this.$route.query.tambon;
     if(typeof rec.all !== 'undefined') this.userReq.all = this.$route.query.all;
+  },
+  methods:{
+    async logOut(){
+      try{
+        const data = await firebase.auth().signOut();
+        console.log(data)
+        this.$router.replace({name: "Login"})
+      }catch(err){
+        alert(err)
+      }
+    },
   }
 }
 </script>

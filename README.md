@@ -32,3 +32,6 @@ Need "Add garbage" Page
 1. Add Login Page frontend
 2. What is username and password lol
 
+# 15/5/2021 Changes be Heart
+1. Now connected to firebase. yay
+

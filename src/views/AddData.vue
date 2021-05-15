@@ -8,7 +8,7 @@
       <v-toolbar-title class = "font-weight-medium"> INTERASHTIVE DATA </v-toolbar-title>
       <v-spacer></v-spacer>
       <div id="nav">
-        <router-link to="/"> Logout </router-link> -
+        <button @click= "logOut"> Log out </button> - 
         <router-link to="/Search"> Search </router-link> -
         <router-link to="/garbagedata"> Garbagedata </router-link> -
         <router-link to="/adddata"> Add Data </router-link>
@@ -110,7 +110,9 @@
     </v-main>
   </v-app>
 </template>
+
 <script>
+import firebase from "firebase"
 export default {
   name: 'Search',
   data() {
@@ -174,6 +176,15 @@ export default {
       if(this.selectedfile){
         reader.readAsDataURL(this.selectedfile)
       } 
+    },
+    async logOut(){
+      try{
+        const data = await firebase.auth().signOut();
+        console.log(data)
+        this.$router.replace({name: "Login"})
+      }catch(err){
+        alert(err)
+      }
     },
   }, 
 

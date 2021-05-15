@@ -8,7 +8,7 @@
       <v-toolbar-title class = "font-weight-medium"> INTERASHTIVE DATA </v-toolbar-title>
       <v-spacer></v-spacer>
       <div id="nav">
-        <router-link to="/"> Logout </router-link> -
+        <button @click= "logOut"> Log out </button> - 
         <router-link to="/Search"> Search </router-link> -
         <router-link to="/garbagedata"> Garbagedata </router-link> -
         <router-link to="/adddata"> Add Data </router-link>
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import firebase from "firebase"
 export default {
   name: 'Info',
   components: {
@@ -44,13 +45,22 @@ export default {
       }
    },
    methods: {
-       async loadData(id){
-           console.log(`api/garbages/${id}`)
-           const res = await fetch(`api/garbages/${id}`)
-           this.DATA = await res.json()
-           console.log(this.DATA)
-       }
-   },
+    async loadData(id){
+        console.log(`api/garbages/${id}`)
+        const res = await fetch(`api/garbages/${id}`)
+        this.DATA = await res.json()
+        console.log(this.DATA)
+    },
+    async logOut(){
+      try{
+        const data = await firebase.auth().signOut();
+        console.log(data)
+        this.$router.replace({name: "Login"})
+      }catch(err){
+        alert(err)
+      }
+    },
+  },
   async created(){
       const req = this.$route.query
       this.id = req.id

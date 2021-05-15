@@ -6,7 +6,7 @@
         align = "center"
         class = "py-7 ma-0 rounded-lg"
     >
-        <h1> Login </h1>
+        <h1> {{this.name}} </h1>
         <div class = "smol"></div>
 
         <v-form class="form">
@@ -38,7 +38,7 @@
                     dark
                     rounded
                     class = "purple darken-3 font-weight-medium"
-                >LOGIN</v-btn>
+                >{{this.name2}}</v-btn>
             </v-container>
         </v-form>
     </v-card>   
@@ -54,6 +54,10 @@ export default {
         Username: "",
         Password: "",
       }
+    },
+    props:{
+        name: {type:String},
+        name2: {type:String},
     },
     methods:{
         onSubmit(e){
