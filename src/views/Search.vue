@@ -58,9 +58,9 @@ export default {
   name: 'Search',
   data() {
       return{
-        Province: "",
-        Amphoe: "",
-        Tambon: "",
+        Province: "-",
+        Amphoe: "-",
+        Tambon: "-",
       }
     },
   methods: {

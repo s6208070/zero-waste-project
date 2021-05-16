@@ -32,6 +32,13 @@ Need "Add garbage" Page
 1. Add Login Page frontend
 2. What is username and password lol
 
-# 15/5/2021 Changes be Heart
+# 15/5/2021 Changes by Heart
 1. Now connected to firebase. yay
+
+# 16/5/2021 Changes by Heart
+1. Connect Garbagedata to firestore
+2. Now can properly add image in binary form to storage
+3. Update Add garbage and Info page, now displaying along with Update and Delete button
+4. Final {TODO} : Add nearby garbage display 
+
 

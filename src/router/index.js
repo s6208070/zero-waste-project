@@ -7,8 +7,10 @@ import AddData from '../views/AddData.vue'
 import Info from '../views/Info.vue'
 import Register from '../views/Register.vue'
 import firebase from "firebase"
-Vue.use(VueRouter)
+import VueCompositionAPI from '@vue/composition-api'
 
+Vue.use(VueRouter)
+Vue.use(VueCompositionAPI)
 const routes = [
   {
     path: '/',
@@ -43,6 +45,10 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register,
+  },
+  {
+    path: "*",
+    redirect: "/search"
   }
 ]
 

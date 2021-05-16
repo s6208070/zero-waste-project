@@ -72,21 +72,38 @@
             />
         </div>
         <div>
+          <label> Size: {{this.DATA.size}} <br></label>
+          <input 
+            type="range" 
+            min="1" max ="5" 
+            step="1" 
+            v-model="DATA.size"
+          />
+        </div>
+        <div>
+          <label> Visual polluion: {{this.DATA.visual}} <br></label>
+          <input 
+            type="range" 
+            min="1" max ="5" 
+            step="1" 
+            v-model="DATA.visual"
+          />
+        </div>
+        <div>
+          <label> Odor pollution: {{this.DATA.odor}} <br></label>
+          <input 
+            type="range" 
+            min="1" max ="5" 
+            step="1" 
+            v-model="DATA.odor"
+          />
+        </div>
+        <div>
             <label>User ID<br> </label>
             <input
                 type = "text"
                 v-model="DATA.userid"
                 name = "UserID"
-                placeholder = "Enter..."
-            />
-        </div>
-        <div>
-            <label>Weight<br> </label>
-            <input
-                type = "number"
-                v-model="DATA.weight"
-                step = "0.01"
-                name = "Weight"
                 placeholder = "Enter..."
             />
         </div>
@@ -97,6 +114,28 @@
             cols="50" 
             name="comment"
             v-model="DATA.description" 
+            form="form"
+            placeholder = "Enter..."
+          ></textarea>
+        </div>
+        <div>
+          <label> Custom location<br> </label>
+          <textarea 
+            rows="4" 
+            cols="50" 
+            name="location"
+            v-model="DATA.location" 
+            form="form"
+            placeholder = "Enter..."
+          ></textarea>
+        </div>
+        <div>
+          <label> Nearby Area<br> </label>
+          <textarea 
+            rows="4" 
+            cols="50" 
+            name="nearby"
+            v-model="DATA.nearby" 
             form="form"
             placeholder = "Enter..."
           ></textarea>
@@ -113,12 +152,12 @@
 
 <script>
 import firebase from "firebase"
+import {STR,DB} from "@/firebase"
 export default {
   name: 'Search',
   data() {
       return{
         DATA: {
-            id: "",
             timestamp: "",
             province: "",
             amphoe: "",
@@ -126,10 +165,14 @@ export default {
             cox: "",
             coy: "",
             userid: "",
-            weight: "",
             status: "Not collected",
-            base64img: "not assigned",
+            location: "",
             description: "",
+            nearby: "",
+            size: 1,
+            visual: 1,
+            odor: 1,
+            imageURL: "",
         },
         selectedfile: null,
         previewurl: null,
@@ -138,17 +181,12 @@ export default {
   methods: {
     async addTask(e){
       e.preventDefault()
-      const res = await fetch("api/garbages", {
-          method: 'POST',
-          headers: {
-              'Content-type': 'application/json', 
-          },
-          body: JSON.stringify(this.DATA),
-      })
-      res.json()
-      alert("Successfully add the gargbage information. Please go back to the Search page or GarbageData page")
+      await STR.ref(`garbage_images/${this.selectedfile.name}`).put(this.selectedfile)
+      .then(async (snapshot) => this.DATA.imageURL = await snapshot.ref.getDownloadURL())
+      console.log(this.DATA)
+      await DB.add({...this.DATA})
+      alert("Successfully add the gargbage information. You may go back to the Search page or GarbageData page")
       this.DATA = {
-            id: "",
             timestamp: "",
             province: "",
             amphoe: "",
@@ -158,8 +196,13 @@ export default {
             userid: "",
             weight: "",
             status: "Not collected",
-            base64img: "not assigned",
+            location: "",
             description: "",
+            nearby: "",
+            size: 1,
+            visual: 1,
+            odor: 1,
+            imageURL: "",
         }
         this.selectedfile = null
         this.previewurl = null
@@ -169,13 +212,7 @@ export default {
       this.selectedfile = e.target.files[0];
       if(this.selectedfile == null) return;
       this.previewurl = URL.createObjectURL(this.selectedfile);
-      const reader = new FileReader()
-      reader.addEventListener("load", function () {
-        this.DATA.base64img = reader.result;
-      }.bind(this), false);
-      if(this.selectedfile){
-        reader.readAsDataURL(this.selectedfile)
-      } 
+      
     },
     async logOut(){
       try{

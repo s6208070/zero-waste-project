@@ -9,6 +9,7 @@
     "json-database": "json-server --watch db.json --port 5000"
   },
   "dependencies": {
+    "@vue/composition-api": "^1.0.0-rc.8",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "filereader": "^0.10.3",
@@ -16,6 +17,7 @@
     "json-server": "^0.16.3",
     "vue": "^2.6.11",
     "vue-router": "^3.5.1",
+    "vuefire": "^2.2.5",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
