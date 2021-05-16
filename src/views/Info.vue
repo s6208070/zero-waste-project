@@ -42,6 +42,15 @@
         <div>
           <button @click="deleteTask"> DELETE TASK </button>
         </div>
+        <div>
+          <div v-if="this.show">
+            <button @click="toggleShow"> HIDE TABLE </button>
+            <Nearby :cox="DATA.cox" :coy="DATA.coy" :ID="id" />
+          </div>
+          <div v-else>
+            <button @click="toggleShow"> SHOW NEARBY GARBAGE LOCATION </button>
+          </div>
+        </div>
     </v-main>
   </v-app>
 </template>
@@ -49,6 +58,8 @@
 <script>
 import firebase from "firebase"
 import {DB} from "@/firebase"
+import Nearby from "@/components/Nearby"
+
 export default {
   name: 'Info',
   data() { 
@@ -56,7 +67,11 @@ export default {
       id: "",
       DATA: [],
       temp: "",
+      show: false,
     }
+  },
+  components: {
+    Nearby,
   },
   methods: {
     async logOut(){
@@ -78,6 +93,9 @@ export default {
         await DB.doc(this.id).delete()
         this.$router.replace({name: "GarbageData"})
       }
+    },
+    toggleShow(){
+      this.show = !this.show
     }
   },
   async created(){

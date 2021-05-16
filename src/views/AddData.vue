@@ -59,16 +59,16 @@
             <input
                 type = "number"
                 v-model="DATA.cox"
-                step = "0.000001"
+                step = "0.00000001"
                 name = "CoX"
-                placeholder = "Enter X..."
+                placeholder = "Enter Lat..."
             />
             <input
                 type = "number"
                 v-model="DATA.coy"
-                step = "0.000001"
+                step = "0.00000001"
                 name = "CoY"
-                placeholder = "Enter Y..."
+                placeholder = "Enter Lon..."
             />
         </div>
         <div>

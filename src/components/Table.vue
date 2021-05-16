@@ -36,6 +36,8 @@ export default {
         { text: 'Coordinate Y', value: 'coy' },
         { text: 'UserID', value: 'userid' },
         { text: 'status', value: 'status' },
+        { text: 'Province', value: 'province' },
+        { text: 'Amphoe', value: 'amphoe'}
       ]
     },
   },
@@ -50,7 +52,7 @@ export default {
     if(typeof q.province != 'undefined') this.userReq.province = q.province
     if(typeof q.amphoe != 'undefined') this.userReq.amphoe = q.amphoe
     if(typeof q.tambon != 'undefined') this.userReq.tambon = q.tambon
-    if(typeof this.userReq == 'undefined') this.userReq = {all:true}
+
     await DB.onSnapshot(snapshot => {
       this.temp = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       if(!this.userReq.all){

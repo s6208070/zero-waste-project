@@ -39,6 +39,8 @@ Need "Add garbage" Page
 1. Connect Garbagedata to firestore
 2. Now can properly add image in binary form to storage
 3. Update Add garbage and Info page, now displaying along with Update and Delete button
-4. Final {TODO} : Add nearby garbage display 
+4. ~~Final {TODO} :~~ Add nearby garbage display
+
+## Backend on website is mainly done now, waiting for feedback
 
 
