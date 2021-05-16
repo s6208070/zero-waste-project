@@ -40,15 +40,15 @@
 </template>
 <script>
 import Navbar from "@/components/Navbar"
-
+import firebase from "firebase"
 export default {
   name: 'Search',
   components: {Navbar},
   data() {
       return{
-        Province: "",
-        Amphoe: "",
-        Tambon: "",     
+        Province: "-",
+        Amphoe: "-",
+        Tambon: "-",
       }
     },
   methods: {
@@ -61,7 +61,16 @@ export default {
     },
     onEverything(){
       this.$router.push({name: "GarbageData", query: {all: true}})
-    }
-  }
+    },
+    async logOut(){
+      try{
+        const data = await firebase.auth().signOut();
+        console.log(data)
+        this.$router.replace({name: "Login"})
+      }catch(err){
+        alert(err)
+      }
+    },
+  },
 }
 </script>

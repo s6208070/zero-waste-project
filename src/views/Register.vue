@@ -5,7 +5,9 @@
       height = "720px"
     >
     <v-app-bar 
-      app dark color = "grey-darken-4" 
+      app dark color = "indigo darken-1" 
+
+      src = "https://img.freepik.com/free-vector/abstract-background-with-dots-blurry-shapes_23-2148705493.jpg?size=626&ext=jpg&ga=GA1.2.1842958395.1604448000"
     >
       <v-toolbar-title class = "font-weight-medium"> INTERASHTIVE DATA </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -17,7 +19,7 @@
       <v-main>
         <v-img
           src = "../assets/interashtive-logo.png"
-          max-height = "105"
+          max-height = "110"
           contain
         ></v-img>
         <v-card
@@ -25,56 +27,42 @@
           align = "center"
           class = "pt-7 white--text"
           color = "transparent"
-        >Welcome to our website.</v-card>
-        <Form @login-request="checkLogin" :name ="name" :name2="name2" />
+        >Create new account with email and password WITH 6 OR MORE LETTERS</v-card>
+        <Form @login-request="createAccount" :name ="name" :name2="name2" />
         <v-card
           flat
           align = "center"
           class = "pt-7 white--text"
           color = "transparent"
-        >No account? <router-link to="/register"> Register here </router-link> </v-card>
+        >Already has an account? <router-link to="/"> Login here </router-link></v-card>
       </v-main>
     </v-card>
-
-    <v-footer dark>
-      <v-card
-        class = "text-center flex"
-        flat
-        tile
-        justify-center
-      >
-        <v-card-text class = "white--text text-center">
-          {{ new Date().getFullYear() }} — <strong>Interashtive Team</strong>
-        </v-card-text>
-      </v-card>
-    </v-footer>
   </v-app>
 </template>
 
 <script>
-import Form from "@/components/Form";
-import firebase  from "firebase";
-
+import Form from "@/components/Form"
+import firebase from "firebase"
   export default {
-    name: 'Login',
+    name: 'Register',
     data () {
       return{
-        name: "Login",
-        name2: "LOGIN"
+        name: "Register",
+        name2: "CREATE NEW ACCOUNT"
       }
     },
     components: {
       Form
     },
     methods: {
-      async checkLogin(request){
+      async createAccount(request){
         try{
-          const login = await firebase.auth()
-          .signInWithEmailAndPassword(request.Username, request.Password)
-          console.log(login)
-          this.$router.push({name: "Search"})
+            const regis = await firebase.auth()
+            .createUserWithEmailAndPassword(request.Username, request.Password)
+            console.log(regis)
+            this.$router.push({name: "Search"})
         }catch(err){
-          alert(err)
+            alert(err)
         }
       },
       

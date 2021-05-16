@@ -5,15 +5,9 @@
       <div> hello </div>
       <h1> You are looking for: </h1>
       <h3 v-if="this.userReq.all"> EVERYTHING, right? </h3>
-      <h4 v-else> {{this.userReq.p}}, {{this.userReq.a}}, {{this.userReq.t}}  right? <br> <br> </h4>
-      <div> TODO: Create the Fucking table </div>
-      <v-card
-        flat
-        class = "tbcontain"
-        justify = "center"
-      >
-        <Table :userReq = "userReq"/>
-      </v-card>
+      <h4 v-else> {{this.userReq.province}}, {{this.userReq.amphoe}}, {{this.userReq.tambon}}  right? <br> <br> </h4>
+
+      <Table/>
     </v-main>
   </v-app>
 </template>
@@ -21,6 +15,7 @@
 <script>
 import Table from "@/components/Table"
 import Navbar from "@/components/Navbar"
+import firebase from "firebase"
 export default {
   name: 'GarbageData',
   components: {
@@ -29,21 +24,31 @@ export default {
   },
   data() {
       return{
-          userReq: []
+        userReq:{
+          province: "-",
+          amphoe: "-",
+          tambon: "-",
+          all: true,
+        }
       }
    },
+  methods:{
+    async logOut(){
+      try{
+        const data = await firebase.auth().signOut();
+        console.log(data)
+        this.$router.replace({name: "Login"})
+      }catch(err){
+        alert(err)
+      }
+    },
+  },
   created(){
-    const rec = this.$route.query;
-    this.userReq = {
-            all: true,
-            p: "",
-            a: "",
-            t: "",
-          }
-    if(typeof rec.province !== 'undefined') this.userReq.p = this.$route.query.province;
-    if(typeof rec.amphoe !== 'undefined') this.userReq.a = this.$route.query.amphoe;
-    if(typeof rec.tambon !== 'undefined') this.userReq.t = this.$route.query.tambon;
-    if(typeof rec.all !== 'undefined') this.userReq.all = this.$route.query.all;
+    let q = this.$route.query
+    if(typeof q.all != 'undefined') this.userReq.all = q.all 
+    if(typeof q.province != 'undefined') this.userReq.province = q.province
+    if(typeof q.amphoe != 'undefined') this.userReq.amphoe = q.amphoe
+    if(typeof q.tambon != 'undefined') this.userReq.tambon = q.tambon
   }
 }
 </script>

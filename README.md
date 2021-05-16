@@ -27,3 +27,18 @@ Need "Add garbage" Page
 2. Add option to add image - convert to base64 - yeet into json server, db.json file size is fuck up now
 3. Add "info" page, access by clicking the GarbageData's table's row
 4. Help
+
+# 14/5/2021 Changes by Mok
+1. Add Login Page frontend
+2. What is username and password lol
+
+# 15/5/2021 Changes by Heart
+1. Now connected to firebase. yay
+
+# 16/5/2021 Changes by Heart
+1. Connect Garbagedata to firestore
+2. Now can properly add image in binary form to storage
+3. Update Add garbage and Info page, now displaying along with Update and Delete button
+4. Final {TODO} : Add nearby garbage display 
+
+

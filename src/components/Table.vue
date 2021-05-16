@@ -12,51 +12,59 @@
 </template>
 
 <script>
-  export default {
-    name: "Table",
-    data () {
-      return {
-        search: '',
-        Garbage: [],
-      }
-    },
-    props: {
-      userReq: {
-        type: Object,
-      }
-    },
-    computed: {
-      headers () {
-        return [
-          {
-            text: 'Timestamp',
-            align: 'start',
-            value: 'timestamp',
-          },
-          { text: 'Coordinate X', value: 'cox' },
-          { text: 'Coordinate Y', value: 'coy' },
-          { text: 'UserID', value: 'userid' },
-          { text: 'status', value: 'status' },
-          { text: 'Weight', value: 'weight' },
-        ]
+import {DB} from "@/firebase"
+export default {
+  name: "Table",
+  data(){
+    return{
+      userReq:{
+        all: true,
       },
-    },
-    methods: {
-      async loadData(){
-        const res = await fetch("api/garbages")
-        this.Garbage = await res.json()
-        const f = this.userReq
-        if(f.all == true || f.all == "true") return
-        this.Garbage = this.Garbage.filter(function(item) {
-          return item != null && item.province == f.p && item.amphoe == f.a && item.t == f.t
-        })
-      },
-      handleClick(e){
-        this.$router.push({name: "Info", query: {id: e.id}})
-      }
-    },
-    mounted(){
-      this.loadData()
+      Garbage: [],
+      temp:[]
     }
-  }
+  },
+  computed: {
+    headers () {
+      return [
+        {
+          text: 'Timestamp',
+          align: 'start',
+          value: 'timestamp',
+        },
+        { text: 'Coordinate X', value: 'cox' },
+        { text: 'Coordinate Y', value: 'coy' },
+        { text: 'UserID', value: 'userid' },
+        { text: 'status', value: 'status' },
+      ]
+    },
+  },
+  methods: {
+    handleClick(e){
+      this.$router.push({name: "Info", query: {id: e.id}})
+    },
+  },
+  async created(){
+    let q = this.$route.query
+    if(typeof q.all != 'undefined') this.userReq.all = q.all 
+    if(typeof q.province != 'undefined') this.userReq.province = q.province
+    if(typeof q.amphoe != 'undefined') this.userReq.amphoe = q.amphoe
+    if(typeof q.tambon != 'undefined') this.userReq.tambon = q.tambon
+    if(typeof this.userReq == 'undefined') this.userReq = {all:true}
+    await DB.onSnapshot(snapshot => {
+      this.temp = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      if(!this.userReq.all){
+        for(var i=0;i < this.temp.length;i++){
+          if((this.temp[i].province == this.userReq.province || this.userReq.province == "-")
+          && (this.temp[i].amphoe == this.userReq.amphoe || this.userReq.amphoe == "-")
+          && (this.temp[i].tambon == this.userReq.tambon || this.userReq.tambon == "-")){
+            this.Garbage.push(this.temp[i])
+          }
+        }
+      }else{
+        this.Garbage = this.temp
+      }
+    })
+  },
+}
 </script>
