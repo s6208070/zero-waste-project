@@ -1,5 +1,9 @@
 <template>
   <v-app style = "overflow:auto;">
+    <v-card 
+      class = "back"
+      height = "720px"
+    >
     <v-app-bar 
       app dark color = "indigo darken-1" 
 
@@ -12,10 +16,21 @@
       </div>
       
     </v-app-bar>
-    <v-main>
-      Welcome to our website, No registeration form yet. Contact admin to gain access.
-      <Form @login-request="checkLogin" />
-    </v-main>
+      <v-main>
+        <v-img
+          src = "../assets/interashtive-logo.png"
+          max-height = "110"
+          contain
+        ></v-img>
+        <v-card
+          flat
+          align = "center"
+          class = "pt-7 white--text"
+          color = "transparent"
+        >Welcome to our website, currently there is no registration form yet... Please contact admin to gain access.</v-card>
+        <Form @login-request="checkLogin" />
+      </v-main>
+    </v-card>
   </v-app>
 </template>
 
@@ -50,5 +65,8 @@ import Form from "@/components/Form"
 </script>
 
 <style>
-
+  .back {
+    background-image: url(../assets/login-bg.png);
+    background-size: cover;
+  }
 </style>

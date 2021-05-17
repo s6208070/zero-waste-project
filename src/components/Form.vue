@@ -1,29 +1,48 @@
 <template>
 <header>
-    <h1> Login </h1>
-    <form @submit="onSubmit" class="form">
-        <div>
-            <label>Username ->  </label>
-            <input
-                type = "text"
-                v-model="Username"
-                name = "Username"
-                placeholder = "Enter..."
-            />
-        </div>
-        <div>
-            <label>Password ->  </label>
-            <input
-                type = "text"
-                name = "Password"
-                v-model="Password"
-                placeholder = "Enter..."
-            />
-        </div>
-        <input type = "submit" value="LOGIN"/>
-    </form>
+    <v-card flat align = "center" class = "pt-12 pb-0" color = "transparent">
+    <v-card
+        max-width = "500"
+        align = "center"
+        class = "py-7 ma-0 rounded-lg"
+    >
+        <h1> Login </h1>
+        <div class = "smol"></div>
 
-    
+        <v-form class="form">
+            <v-container class = "pa-0 ma-0">
+                <v-row justify = "center" style = "height : 60px;">
+                    <v-col cols = "8">
+                        <v-text-field
+                            type = "text"
+                            label = "Username"
+                            v-model ="Username"
+                            required
+                        ></v-text-field>
+                    </v-col>
+                </v-row>
+
+                <v-row justify = "center" style = "height : 100px;">
+                    <v-col cols = "8">
+                        <v-text-field
+                            type = "password"
+                            label = "Password"
+                            v-model ="Password"
+                            required
+                        ></v-text-field>
+                    </v-col>
+                </v-row>
+
+                <v-btn 
+                    @click="onSubmit"
+                    dark
+                    rounded
+                    class = "purple darken-3 font-weight-medium"
+                >LOGIN</v-btn>
+            </v-container>
+        </v-form>
+    </v-card>   
+    </v-card>
 </header>
 </template>
 
@@ -62,4 +81,11 @@ export default {
      align-content: center;
      text-align: center;
  }
+
+ .smol {
+    width: 80px;
+    height: 5px;
+    background: #861CA7;
+    margin-top: 7px;
+  }
 </style>
