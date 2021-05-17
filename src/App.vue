@@ -2,7 +2,7 @@
   <div id="app" style="overflow:auto;">
     
   <v-app>
-  <v-main><router-view/></v-main>
+  <v-main><router-view :key="$route.fullPath" /></v-main>
   </v-app>
   </div>
 </template>

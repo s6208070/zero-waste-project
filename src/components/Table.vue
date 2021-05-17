@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {DB} from "@/firebase"
+import {RTDB} from "@/firebase"
 export default {
   name: "Table",
   data(){
@@ -36,6 +36,8 @@ export default {
         { text: 'Coordinate Y', value: 'coy' },
         { text: 'UserID', value: 'userid' },
         { text: 'status', value: 'status' },
+        { text: 'Province', value: 'province' },
+        { text: 'Amphoe', value: 'amphoe'}
       ]
     },
   },
@@ -50,9 +52,13 @@ export default {
     if(typeof q.province != 'undefined') this.userReq.province = q.province
     if(typeof q.amphoe != 'undefined') this.userReq.amphoe = q.amphoe
     if(typeof q.tambon != 'undefined') this.userReq.tambon = q.tambon
-    if(typeof this.userReq == 'undefined') this.userReq = {all:true}
-    await DB.onSnapshot(snapshot => {
-      this.temp = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    await RTDB.ref('garbages').once('value', snapshot => {
+      const data = snapshot.val();
+      Object.keys(data).forEach(key => {
+        this.temp.push({
+          id:key ,...data[key]})
+      })
+      
       if(!this.userReq.all){
         for(var i=0;i < this.temp.length;i++){
           if((this.temp[i].province == this.userReq.province || this.userReq.province == "-")

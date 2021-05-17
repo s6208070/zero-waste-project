@@ -28,40 +28,66 @@
         <div>
           <button @click="deleteTask"> DELETE TASK </button>
         </div>
+        <div>
+          <div v-if="this.show">
+            <button @click="toggleShow"> HIDE TABLE </button>
+            <Nearby :cox="DATA.cox" :coy="DATA.coy" :ID="id" />
+          </div>
+          <div v-else>
+            <button @click="toggleShow"> SHOW NEARBY GARBAGE LOCATION </button>
+          </div>
+        </div>
     </v-main>
   </v-app>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar"
-import {DB} from "@/firebase"
+import firebase from "firebase"
+import {RTDB} from "@/firebase"
+import Nearby from "@/components/Nearby"
+
 export default {
   name: 'Info',
   data() { 
     return{
       id: "",
-      DATA: [],
+      DATA: "",
       temp: "",
+      show: false,
     }
   },
-  components: {Navbar},
+  components: {
+    Nearby,
+    Navbar,
+  },
   methods: {
     async updateTask(){
       this.DATA.status = this.temp
-      await DB.doc(this.id).update({...this.DATA})
+      await RTDB.ref("garbages").child(this.id).update(this.DATA)
       this.$router.replace({name: "GarbageData"})
     },
     async deleteTask(){
-      if(confirm("Are you sure?")){
-        await DB.doc(this.id).delete()
+      if(confirm("Are your sure?")){
+        await RTDB.ref("garbages").child(this.id).remove()
         this.$router.replace({name: "GarbageData"})
       }
+    },
+    toggleShow(){
+      this.show = !this.show
     }
   },
   async created(){
     this.id = this.$route.query.id
-    const ret = await DB.doc(this.id).get()
-    this.DATA = ret.data()
+    //const ret = await DB.doc(this.id).get()
+    await RTDB.ref("garbages").once('value', snapshot => {
+      const data = snapshot.val();
+      Object.keys(data).forEach(key => {
+      if(key == this.id) this.DATA = {
+        id:key ,...data[key]}
+      })
+    })
+    //this.DATA = ret.data()
     console.log(this.DATA)
     console.log(this.id)
   },

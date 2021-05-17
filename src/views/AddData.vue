@@ -45,16 +45,16 @@
             <input
                 type = "number"
                 v-model="DATA.cox"
-                step = "0.000001"
+                step = "0.00000001"
                 name = "CoX"
-                placeholder = "Enter X..."
+                placeholder = "Enter Lat..."
             />
             <input
                 type = "number"
                 v-model="DATA.coy"
-                step = "0.000001"
+                step = "0.00000001"
                 name = "CoY"
-                placeholder = "Enter Y..."
+                placeholder = "Enter Lon..."
             />
         </div>
         <div>
@@ -138,7 +138,8 @@
 
 <script>
 import Navbar from '@/components/Navbar'
-import {STR,DB} from "@/firebase"
+import firebase from "firebase"
+import {STR,RTDB} from "@/firebase"
 export default {
   components: { Navbar },
   name: 'Search',
@@ -168,10 +169,13 @@ export default {
   methods: {
     async addTask(e){
       e.preventDefault()
-      await STR.ref(`garbage_images/${this.selectedfile.name}`).put(this.selectedfile)
+      const date = new Date()
+      const time = Math.round(date.getTime()/1000)
+      const newName = time + "-" + this.selectedfile.name
+      await STR.ref(`garbage_images/${newName}`).put(this.selectedfile)
       .then(async (snapshot) => this.DATA.imageURL = await snapshot.ref.getDownloadURL())
       console.log(this.DATA)
-      await DB.add({...this.DATA})
+      RTDB.ref('garbages').push(this.DATA)
       alert("Successfully add the gargbage information. You may go back to the Search page or GarbageData page")
       this.DATA = {
             timestamp: "",
