@@ -12,12 +12,16 @@ public class SubmissionSystem : MonoBehaviour
     public GameObject ShowImage;
     public GameObject Database;
     public GameObject Custom;
+    public TMP_InputField tambon;
+    public TMP_InputField amphoe;
+    public TMP_InputField province;
     public string location = null;
+    private string path;
     public void AdditionInfo(){
         SystemManager.GetComponent<SystemScript>().ToPage(transform.parent.name, "Additional");
     }
     public void AddImage(){     
-        string path = EditorUtility.OpenFilePanel("Overwrite with jpg", "", "jpg");
+        path = EditorUtility.OpenFilePanel("Overwrite with jpg", "", "jpg");
         if (path.Length != 0)
         {
             var fileContent = File.ReadAllBytes(path);
@@ -32,8 +36,9 @@ public class SubmissionSystem : MonoBehaviour
     public void Submit(){
         
         //timestamp
-        string monthVar = System.DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss"); 
-        Database.GetComponent<DataSystemScript>().TimeStamp = monthVar;
+        string monthVar = System.DateTime.Now.ToString("yyyy-MM-ddThh:mm:ss");
+        //Debug.Log(monthVar);
+        Database.GetComponent<DataSystemScript>().timestamp = monthVar;
 
         //location
         if(Custom.GetComponent<Toggle>().isOn == true){
@@ -46,9 +51,12 @@ public class SubmissionSystem : MonoBehaviour
             Debug.Log("Fill Address");
             return;
         }
+
+        //ImageLocalPath
+
         
         //submit
-        Database.GetComponent<DataSystemScript>().Submit();
+        Database.GetComponent<DataSystemScript>().Submit(path);
     }
     
 }

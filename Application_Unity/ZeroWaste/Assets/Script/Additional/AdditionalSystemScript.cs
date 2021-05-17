@@ -26,7 +26,7 @@ public class AdditionalSystemScript : MonoBehaviour
         data.OdorLevel = InfoOdor;
         data.SizeLevel = InfoSize;
         data.NearDetail = NearInput.GetComponent<InputField>().text;
-        data.OtherDetail = OtherInput.GetComponent<InputField>().text;
+        data.description = OtherInput.GetComponent<InputField>().text;
         //
         SystemManager.GetComponent<SystemScript>().BackPage(transform.parent.name);
     }
