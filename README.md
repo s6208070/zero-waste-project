@@ -43,4 +43,7 @@ Need "Add garbage" Page
 
 ## Backend on website is mainly done now, waiting for feedback
 
-
+# 17/5/2021 Changes by Heart
+1. Now change json database source from "Firestore" to "Realtime Database". Everything works as intended
+2. Append timestamp to image name. No more duplicate image problem, I guess
+3. Node module is fucked up. Reinstall it, still fucked up, gives up

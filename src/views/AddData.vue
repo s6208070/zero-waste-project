@@ -152,7 +152,7 @@
 
 <script>
 import firebase from "firebase"
-import {STR,DB} from "@/firebase"
+import {STR,RTDB} from "@/firebase"
 export default {
   name: 'Search',
   data() {
@@ -181,10 +181,13 @@ export default {
   methods: {
     async addTask(e){
       e.preventDefault()
-      await STR.ref(`garbage_images/${this.selectedfile.name}`).put(this.selectedfile)
+      const date = new Date()
+      const time = Math.round(date.getTime()/1000)
+      const newName = time + "-" + this.selectedfile.name
+      await STR.ref(`garbage_images/${newName}`).put(this.selectedfile)
       .then(async (snapshot) => this.DATA.imageURL = await snapshot.ref.getDownloadURL())
       console.log(this.DATA)
-      await DB.add({...this.DATA})
+      RTDB.ref('garbages').push(this.DATA)
       alert("Successfully add the gargbage information. You may go back to the Search page or GarbageData page")
       this.DATA = {
             timestamp: "",

@@ -57,7 +57,7 @@
 
 <script>
 import firebase from "firebase"
-import {DB} from "@/firebase"
+import {RTDB} from "@/firebase"
 import Nearby from "@/components/Nearby"
 
 export default {
@@ -65,7 +65,7 @@ export default {
   data() { 
     return{
       id: "",
-      DATA: [],
+      DATA: "",
       temp: "",
       show: false,
     }
@@ -85,12 +85,12 @@ export default {
     },
     async updateTask(){
       this.DATA.status = this.temp
-      await DB.doc(this.id).update({...this.DATA})
+      await RTDB.ref("garbages").child(this.id).update(this.DATA)
       this.$router.replace({name: "GarbageData"})
     },
     async deleteTask(){
       if(confirm("Are your sure?")){
-        await DB.doc(this.id).delete()
+        await RTDB.ref("garbages").child(this.id).remove()
         this.$router.replace({name: "GarbageData"})
       }
     },
@@ -100,8 +100,15 @@ export default {
   },
   async created(){
     this.id = this.$route.query.id
-    const ret = await DB.doc(this.id).get()
-    this.DATA = ret.data()
+    //const ret = await DB.doc(this.id).get()
+    await RTDB.ref("garbages").once('value', snapshot => {
+      const data = snapshot.val();
+      Object.keys(data).forEach(key => {
+      if(key == this.id) this.DATA = {
+        id:key ,...data[key]}
+      })
+    })
+    //this.DATA = ret.data()
     console.log(this.DATA)
     console.log(this.id)
   },

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import {DB} from "@/firebase"
+import {RTDB} from "@/firebase"
 
 export default {
   name: "Table",
@@ -45,8 +45,13 @@ export default {
     },
   },
   async created(){
-    await DB.onSnapshot(snapshot => {
-      this.temp = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    await RTDB.ref('garbages').once('value', snapshot => {
+      const data = snapshot.val();
+      Object.keys(data).forEach(key => {
+        this.temp.push({
+          id:key ,...data[key]})
+      })
+      
       const x1 = parseFloat(this.cox)
       const y1 = parseFloat(this.coy)
       const R = 6357
