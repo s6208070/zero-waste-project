@@ -34,7 +34,6 @@
 
 <script>
 import Navbar from "@/components/Navbar"
-import firebase from "firebase"
 import {DB} from "@/firebase"
 export default {
   name: 'Info',
@@ -47,22 +46,13 @@ export default {
   },
   components: {Navbar},
   methods: {
-    async logOut(){
-      try{
-        const data = await firebase.auth().signOut();
-        console.log(data)
-        this.$router.replace({name: "Login"})
-      }catch(err){
-        alert(err)
-      }
-    },
     async updateTask(){
       this.DATA.status = this.temp
       await DB.doc(this.id).update({...this.DATA})
       this.$router.replace({name: "GarbageData"})
     },
     async deleteTask(){
-      if(confirm("Are your sure?")){
+      if(confirm("Are you sure?")){
         await DB.doc(this.id).delete()
         this.$router.replace({name: "GarbageData"})
       }

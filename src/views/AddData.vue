@@ -138,7 +138,6 @@
 
 <script>
 import Navbar from '@/components/Navbar'
-import firebase from "firebase"
 import {STR,DB} from "@/firebase"
 export default {
   components: { Navbar },
@@ -201,15 +200,6 @@ export default {
       if(this.selectedfile == null) return;
       this.previewurl = URL.createObjectURL(this.selectedfile);
       
-    },
-    async logOut(){
-      try{
-        const data = await firebase.auth().signOut();
-        console.log(data)
-        this.$router.replace({name: "Login"})
-      }catch(err){
-        alert(err)
-      }
     },
   }, 
 

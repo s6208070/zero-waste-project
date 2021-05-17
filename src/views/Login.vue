@@ -2,7 +2,6 @@
   <v-app style = "overflow:auto;">
     <v-card 
       class = "back"
-      height = "720px"
     >
     <v-app-bar 
       app dark color = "grey-darken-4" 
@@ -20,34 +19,34 @@
           max-height = "105"
           contain
         ></v-img>
-        <v-card
+        <!-- <v-card
           flat
           align = "center"
           class = "pt-7 white--text"
           color = "transparent"
-        >Welcome to our website.</v-card>
+        >Welcome to our website.</v-card> -->
         <Form @login-request="checkLogin" :name ="name" :name2="name2" />
         <v-card
           flat
           align = "center"
-          class = "pt-7 white--text"
+          class = "pt-8 pb-6 white--text"
           color = "transparent"
-        >No account? <router-link to="/register"> Register here </router-link> </v-card>
+        >No account? <router-link to="/register" class = "white--text font-weight-bold"> Register here </router-link> </v-card>
       </v-main>
-    </v-card>
-
-    <v-footer dark>
-      <v-card
-        class = "text-center flex"
-        flat
-        tile
-        justify-center
-      >
-        <v-card-text class = "white--text text-center">
-          {{ new Date().getFullYear() }} — <strong>Interashtive Team</strong>
-        </v-card-text>
       </v-card>
-    </v-footer>
+      <v-footer dark>
+        <v-card
+          class = "text-center flex"
+          flat
+          tile
+          padless
+          justify-center
+        >
+          <v-card-text class = "white--text text-center">
+            {{ new Date().getFullYear() }} — <strong>Interashtive Team</strong>
+          </v-card-text>
+        </v-card>
+      </v-footer>
   </v-app>
 </template>
 
@@ -87,5 +86,6 @@ import firebase  from "firebase";
   .back {
     background-image: url(../assets/login-bg.png);
     background-size: cover;
+    height: 700px;
   }
 </style>

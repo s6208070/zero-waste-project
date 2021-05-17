@@ -28,11 +28,10 @@
                         </router-link>
                     </v-btn>
                   </v-col>
-                  <v-col class = "px-0">
-                    <v-btn text>
-                        <router-link to="/" style="text-decoration: none;"> 
-                            LOGOUT 
-                        </router-link>
+                  <v-col class = "pr-1 pl-2">
+                    <v-btn @click= "logOut" outlined class = "font-weight-bold" color = "blue-grey lighten-5">
+                        LOGOUT
+                        <v-icon right small>mdi-logout</v-icon>
                     </v-btn>
                   </v-col>
               </v-row>
@@ -41,7 +40,18 @@
     </v-app-bar>
 </template>
 <script>
-export default{
-
+import firebase from "firebase"
+export default {
+    methods: {
+        async logOut(){
+            try{
+                const data = await firebase.auth().signOut();
+                console.log(data)
+                this.$router.replace({name: "Login"})
+            }catch(err){
+                alert(err)
+            }
+        },
+    },
 }
 </script>
