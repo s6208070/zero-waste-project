@@ -34,25 +34,14 @@
         >No account? <router-link to="/register" class = "white--text font-weight-bold"> Register here </router-link> </v-card>
       </v-main>
       </v-card>
-      <v-footer dark>
-        <v-card
-          class = "text-center flex"
-          flat
-          tile
-          padless
-          justify-center
-        >
-          <v-card-text class = "white--text text-center">
-            {{ new Date().getFullYear() }} — <strong>Interashtive Team</strong>
-          </v-card-text>
-        </v-card>
-      </v-footer>
+      <Footer/>
   </v-app>
 </template>
 
 <script>
 import Form from "@/components/Form";
 import firebase  from "firebase";
+import Footer from "@/components/Footer";
 
   export default {
     name: 'Login',
@@ -63,7 +52,8 @@ import firebase  from "firebase";
       }
     },
     components: {
-      Form
+      Form,
+      Footer,
     },
     methods: {
       async checkLogin(request){

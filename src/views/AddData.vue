@@ -133,15 +133,20 @@
         <input type = "submit"/>
     </form>
     </v-main>
+    <Footer/>
   </v-app>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar'
-import firebase from "firebase"
 import {STR,RTDB} from "@/firebase"
+import Footer from "@/components/Footer";
+
 export default {
-  components: { Navbar },
+  components: {
+    Navbar,
+    Footer,
+  },
   name: 'Search',
   data() {
       return{

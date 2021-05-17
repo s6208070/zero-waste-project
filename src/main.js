@@ -4,9 +4,7 @@ import vuetify from './plugins/vuetify';
 import router from './router'
 import './firebase'
 import firebase from 'firebase/app'
-import VueParticles from 'vue-particles'
 
-Vue.use(VueParticles)
 Vue.config.productionTip = false;
 
 let app;

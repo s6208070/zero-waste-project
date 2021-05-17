@@ -1,10 +1,10 @@
 <template>
-  <div class = "ma-4">
+  <div class = "my-4 mx-2">
     <v-data-table
       :headers="headers"
       :items="Garbage"
       item-key="name"
-      class="elevation-1"
+      class="elevation-1 rounded-xl"
       @click:row="handleClick"
     >
     </v-data-table>

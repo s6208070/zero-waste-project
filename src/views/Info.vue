@@ -38,14 +38,15 @@
           </div>
         </div>
     </v-main>
+    <Footer/>
   </v-app>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar"
-import firebase from "firebase"
 import {RTDB} from "@/firebase"
 import Nearby from "@/components/Nearby"
+import Footer from "@/components/Footer";
 
 export default {
   name: 'Info',
@@ -60,6 +61,7 @@ export default {
   components: {
     Nearby,
     Navbar,
+    Footer,
   },
   methods: {
     async updateTask(){

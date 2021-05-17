@@ -35,12 +35,15 @@
         >Already has an account? <router-link to="/" class = "white--text font-weight-bold"> Login here </router-link></v-card>
       </v-main>
     </v-card>
+    <Footer/>
   </v-app>
 </template>
 
 <script>
 import Form from "@/components/Form"
 import firebase from "firebase"
+import Footer from "@/components/Footer";
+
   export default {
     name: 'Register',
     data () {
@@ -50,7 +53,8 @@ import firebase from "firebase"
       }
     },
     components: {
-      Form
+      Form,
+      Footer,
     },
     methods: {
       async createAccount(request){
