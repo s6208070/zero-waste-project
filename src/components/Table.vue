@@ -7,6 +7,15 @@
       class="elevation-1 rounded-xl"
       @click:row="handleClick"
     >
+      <template v-slot:item.status="{ item }">
+        <v-chip
+          :color="getColor(item.status)"
+          dark
+          class = "center-itself"
+        >
+          {{ item.status }}
+        </v-chip>
+      </template>
     </v-data-table>
   </div>
 </template>
@@ -45,6 +54,12 @@ export default {
     handleClick(e){
       this.$router.push({name: "Info", query: {id: e.id}})
     },
+    getColor(a){
+      if(a == 'Not collected') return 'red';
+      if(a == 'In process') return 'amber';
+      if(a == 'Successfully collected') return 'green';
+      return 'grey';
+    },
   },
   async created(){
     let q = this.$route.query
@@ -74,3 +89,11 @@ export default {
   },
 }
 </script>
+
+<style>
+  .center-itself{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+</style>
