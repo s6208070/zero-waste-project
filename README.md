@@ -47,3 +47,6 @@ Need "Add garbage" Page
 1. Now change json database source from "Firestore" to "Realtime Database". Everything works as intended
 2. Append timestamp to image name. No more duplicate image problem, I guess
 3. Node module is fucked up. Reinstall it, still fucked up, gives up
+
+# 18-19/5/2021 Changes by Mok
+1. Frontend of Search, GarbageData, and AddData are most likely done. yay!
