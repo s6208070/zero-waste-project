@@ -22,3 +22,8 @@ public class WastePack
     public string status;
     public string imageURL;
 }
+public class WasteLink
+{
+    public bool seen;
+    public string submission;
+}

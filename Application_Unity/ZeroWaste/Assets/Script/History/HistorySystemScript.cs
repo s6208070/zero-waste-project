@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HistorySystemScript : MonoBehaviour
 {
@@ -12,16 +13,28 @@ public class HistorySystemScript : MonoBehaviour
     public Sprite Sgreen;
     public GameObject content;
     public GameObject gob;
-    // Start is called before the first frame update
-    void Start()
+    public DataSystemScript datasys;
+    public List<WastePack> ws;
+    public Dictionary<string, Sprite> lsp = new Dictionary<string, Sprite>();
+
+    public void CreateTable()
     {
+        Debug.Log("Create table");
         //data
 
+        //clear data
+        if(content.transform.childCount > 0){
+            foreach (Transform child in content.transform){
+                Destroy(child.gameObject);
+            }
+        }
         //create
-        int siz = 6;//inp.Count;
+        Debug.Log("Table Count " + ws.Count + " : Sprite Count " + lsp.Count);
+        int siz = ws.Count;
         var rt = content.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, siz*ElementSize+Offset);
         for(int i = 0;i<siz;i++){
+            Debug.Log("Create element "+i.ToString());
             //instantiate
             var obj = Instantiate(gob, new Vector3(0, 0, 0), Quaternion.identity, content.transform);
             var lr = obj.GetComponent<RectTransform>();
@@ -29,8 +42,13 @@ public class HistorySystemScript : MonoBehaviour
             obj.SetActive(true);
             var image = obj.transform.GetChild(2).gameObject;
             var status = obj.transform.GetChild(3).gameObject;
-
+            var timestamp = obj.transform.GetChild(0).gameObject;
+            var location = obj.transform.GetChild(1).gameObject;
             //data
+            var tem = ws[i].timestamp.Split('T');
+            timestamp.GetComponent<TextMeshProUGUI>().text = tem[0] + "\n" + tem[1];
+            location.GetComponent<TextMeshProUGUI>().text = ws[i].location;
+            image.GetComponent<Image>().sprite = lsp[ws[i].timestamp];
             int ck = 3;
             if(ck == 0){
                 status.GetComponent<Image>().sprite = Sred;
@@ -41,5 +59,7 @@ public class HistorySystemScript : MonoBehaviour
                 //Debug.Log("Done");
             }
         }
+        datasys.UpdateHistory();
     }
+
 }

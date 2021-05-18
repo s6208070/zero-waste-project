@@ -33,7 +33,8 @@ public class LoginScript : MonoBehaviour
     public void RegisterButton()
     {
         //Call the register coroutine passing the email, password, and username
-        StartCoroutine(Register(emailField.text, passwordField.text, emailField.text));
+        string userid = datasys.GetUserID();
+        StartCoroutine(Register(emailField.text, passwordField.text, userid));
     }
 
     private IEnumerator Login(string _email, string _password)
@@ -78,7 +79,8 @@ public class LoginScript : MonoBehaviour
             User = LoginTask.Result;
             Debug.LogFormat("User signed in successfully: {0} ({1})", User.DisplayName, User.Email);
             warningText.text = "Login";
-            datasys.userid = _email;
+            datasys.userid = User.DisplayName;
+            datasys.LoadHistory();
             SystemManager.ToPage("Login","Mainmanu");
         }
     }
