@@ -48,6 +48,10 @@ Need "Add garbage" Page
 2. Append timestamp to image name. No more duplicate image problem, I guess
 3. Node module is fucked up. Reinstall it, still fucked up, gives up
 
+# 17/5/2021 Changes by Oak
+1. Application's backend is completed.
+
+
 # 18-19/5/2021 Changes by Mok
 1. Frontend of Search, GarbageData, and AddData are most likely done. yay!
 2. Website frontend is done
