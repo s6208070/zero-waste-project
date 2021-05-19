@@ -51,3 +51,5 @@ Need "Add garbage" Page
 # 18-19/5/2021 Changes by Mok
 1. Frontend of Search, GarbageData, and AddData are most likely done. yay!
 2. Website frontend is done
+
+## 19/5/2021 - Website part is done, only app frontend left
