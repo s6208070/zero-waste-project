@@ -61,7 +61,7 @@ import Footer from "@/components/Footer";
         try{
             const regis = await firebase.auth()
             .createUserWithEmailAndPassword(request.Username, request.Password)
-            // console.log(regis)
+            console.log(regis)
             this.$router.push({name: "Search"})
         }catch(err){
             alert(err)
