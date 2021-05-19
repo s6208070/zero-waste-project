@@ -55,7 +55,7 @@
             </v-container>
 
             <v-row class = "mb-2 mt-0 px-5"><v-divider></v-divider></v-row>
-            <v-row class = "mt-3 mb-2 px-5"><p class = "center-itself grey--text text--darken-2 font-weight-bold" style = "font-size: 30px;">Date & Exact Location</p></v-row>
+            <v-row class = "mt-3 mb-2 px-5"><p class = "center-itself grey--text text--darken-2 font-weight-bold" style = "font-size: 30px;">Date & Coordinate</p></v-row>
             <v-row class = "px-2 ma-0">
               <v-col cols = "3">
                 <v-card
@@ -223,7 +223,7 @@
               ></v-textarea>
             </v-row>
 
-            <v-row><p class = "center-itself grey--text text--darken-2 font-weight-bold pb-3" style = "font-size: 20px">Location</p></v-row>
+            <v-row><p class = "center-itself grey--text text--darken-2 font-weight-bold pb-3" style = "font-size: 20px">Custom Location (No GPS data)</p></v-row>
             <v-row>
               <v-textarea
                 rows="4" 
@@ -231,9 +231,9 @@
                 name="location"
                 v-model="DATA.location" 
                 form="form"
-                placeholder = "Enter your location here..."
+                placeholder = "Enter your custom location here..."
                 outlined
-                label = "Location"
+                label = "Custom Location (No GPS data)"
                 class = "rounded-xl mx-8"
                 clearable
               ></v-textarea>
@@ -343,7 +343,7 @@ export default {
       const newName = time + "-" + this.selectedfile.name
       await STR.ref(`garbage_images/${newName}`).put(this.selectedfile)
       .then(async (snapshot) => this.DATA.imageURL = await snapshot.ref.getDownloadURL())
-      console.log(this.DATA)
+      // console.log(this.DATA)
       RTDB.ref('garbages').push(this.DATA)
       alert("Successfully add the gargbage information. You may go back to the Search page or GarbageData page")
       this.DATA = {

@@ -31,8 +31,8 @@
             </v-card>
           </v-row>
 
-          <v-row>
-            <v-card class = "rounded-xl transparent center-itself" style = "height: auto;" flat>
+          <v-row justify = "center" class = "pb-6 pt-4">
+            <v-card class = "rounded-xl transparent" flat max-height = "600px" max-width = "600px">
               <v-img
                 :src ="this.DATA.imageURL"
                 contain
@@ -213,8 +213,8 @@ export default {
       })
     })
     //this.DATA = ret.data()
-    console.log(this.DATA)
-    console.log(this.id)
+    // console.log(this.DATA)
+    // console.log(this.id)
 
     if(this.DATA.status == 'Not collected') this.selected = 'Not collected'
     if(this.DATA.status == 'In process') this.selected = 'In process'
