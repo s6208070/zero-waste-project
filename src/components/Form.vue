@@ -116,7 +116,7 @@ export default {
         passwordRules() {
             const passwordRules = [
             v => !!v || "Password is required",
-            v => (v && v.length >= 6) || "Password should have more than 6 characters",
+            v => (v && v.length >= 6) || "Password should contain more than 6 characters",
             ]
             return passwordRules
         },
@@ -124,7 +124,7 @@ export default {
         confirmRules() {
             const passwordRules = [
             v => !!v || "Password is required",
-            v => (v && v.length >= 6) || "Password should have more than 6 characters",
+            v => (v && v.length >= 6) || "Password should contain more than 6 characters",
             ]
 
             const confirmRules = [v => !!v || "Password confirmation is required",]

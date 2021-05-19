@@ -1,7 +1,7 @@
 <template>
   <v-app style = "overflow:auto;">
     <v-card
-      class = "back"
+      class = "back2"
     >
       <Navbar/>
       <v-main>
@@ -54,34 +54,6 @@
               </v-row>
             </v-container>
 
-
-            <!-- <div>
-                <label>Province<br> </label>
-                <input
-                    type = "text"
-                    v-model="DATA.province"
-                    name = "Province"
-                    placeholder = "Enter..."
-                />
-            </div>
-            <div>
-                <label>Amphoe <br> </label>
-                <input
-                    type = "text"
-                    name = "Amphoe"
-                    v-model="DATA.amphoe"
-                    placeholder = "Enter..."
-                />
-            </div>
-            <div>
-                <label>Tambon <br>  </label>
-                <input
-                    type = "text"
-                    name = "Tambon"
-                    v-model="DATA.tambon"
-                    placeholder = "Enter..."
-                />
-            </div> -->
             <v-row class = "mb-2 mt-0 px-5"><v-divider></v-divider></v-row>
             <v-row class = "mt-3 mb-2 px-5"><p class = "center-itself grey--text text--darken-2 font-weight-bold" style = "font-size: 30px;">Date & Exact Location</p></v-row>
             <v-row class = "px-2 ma-0">
@@ -217,35 +189,8 @@
               </v-col>
             </v-row>
 
-            <!-- <div>
-              <label> Size: {{this.DATA.size}} <br></label>
-              <input 
-                type="range" 
-                min="1" max ="5" 
-                step="1" 
-                v-model="DATA.size"
-              />
-            </div>
-            <div>
-              <label> Visual polluion: {{this.DATA.visual}} <br></label>
-              <input 
-                type="range" 
-                min="1" max ="5" 
-                step="1" 
-                v-model="DATA.visual"
-              />
-            </div>
-            <div>
-              <label> Odor pollution: {{this.DATA.odor}} <br></label>
-              <input 
-                type="range" 
-                min="1" max ="5" 
-                step="1" 
-                v-model="DATA.odor"
-              />
-            </div> -->
-
             <!-- End of Severity -->
+
             <v-row class = "mb-2 mt-0 px-5"><v-divider></v-divider></v-row>            
             <v-row class = "mt-3 px-5" style = "height: 40px"><p class = "center-itself grey--text text--darken-2 font-weight-bold" style = "font-size: 30px;">UserID & Other Information</p></v-row>
               <v-row style = "height: 70px" class = "pl-5 pr-8">
@@ -260,16 +205,6 @@
                   </v-text-field>
                 </v-col>
               </v-row>
-
-            <!-- <div>
-                <label>User ID<br> </label>
-                <input
-                    type = "text"
-                    v-model="DATA.userid"
-                    name = "UserID"
-                    placeholder = "Enter..."
-                />
-            </div> -->
 
             <v-row><p class = "center-itself grey--text text--darken-2 font-weight-bold py-3" style = "font-size: 20px">Description</p></v-row>
 
@@ -347,41 +282,6 @@
             </v-row>
             </v-expand-transition>
 
-            <!-- <div>
-              <label> Description<br> </label>
-              <textarea 
-                rows="4" 
-                cols="50" 
-                name="comment"
-                v-model="DATA.description" 
-                form="form"
-                placeholder = "Enter..."
-              ></textarea>
-            </div>
-            <div>
-              <label> Custom location<br> </label>
-              <textarea 
-                rows="4" 
-                cols="50" 
-                name="location"
-                v-model="DATA.location" 
-                form="form"
-                placeholder = "Enter..."
-              ></textarea>
-            </div>
-            <div>
-              <label> Nearby Area<br> </label>
-              <textarea 
-                rows="4" 
-                cols="50" 
-                name="nearby"
-                v-model="DATA.nearby" 
-                form="form"
-                placeholder = "Enter..."
-              ></textarea>
-            </div>
-            <input type ="file" @change="fileChange"/> <br>
-            <img :src="previewurl"/> -->
             <v-row class = "pb-6 mx-5">
               <v-btn
                 class = "center-itself font-weight-bold"
@@ -480,7 +380,7 @@ export default {
 </script>
 
 <style>
-  .back {
+  .back2 {
     background-image: url(../assets/login-bg.png);
     background-size: cover;
     height: 100%;
