@@ -287,8 +287,14 @@ public class DataSystemScript : MonoBehaviour
                 listsnap.Add(snapshot);
             }
         }
-        Debug.Log("History Bug");
+        Debug.Log("History transform");
+
         foreach(DataSnapshot snapshot in listsnap){
+            Debug.Log(snapshot.ToString());
+            if(snapshot.Value == null){
+                Debug.Log("Bug");
+                continue;
+            }
             var json = snapshot.GetRawJsonValue();
             //Debug.Log("Transform "+ json.ToString());
             var sub =  JsonUtility.FromJson<WastePack>(json);

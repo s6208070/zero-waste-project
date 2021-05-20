@@ -34,6 +34,7 @@ public class HistorySystemScript : MonoBehaviour
         var rt = content.GetComponent<RectTransform>();
         rt.sizeDelta = new Vector2(rt.sizeDelta.x, siz*ElementSize+Offset);
         for(int i = 0;i<siz;i++){
+            string key = ws[i].timestamp;
             Debug.Log("Create element "+i.ToString());
             //instantiate
             var obj = Instantiate(gob, new Vector3(0, 0, 0), Quaternion.identity, content.transform);
@@ -48,7 +49,7 @@ public class HistorySystemScript : MonoBehaviour
             var tem = ws[i].timestamp.Split('T');
             timestamp.GetComponent<TextMeshProUGUI>().text = tem[0] + "\n" + tem[1];
             location.GetComponent<TextMeshProUGUI>().text = ws[i].location;
-            image.GetComponent<Image>().sprite = lsp[ws[i].timestamp];
+            image.GetComponent<Image>().sprite = lsp[key];
             int ck = 3;
             if(ck == 0){
                 status.GetComponent<Image>().sprite = Sred;
