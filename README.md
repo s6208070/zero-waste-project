@@ -57,3 +57,5 @@ Need "Add garbage" Page
 2. Website frontend is done
 
 ## 19/5/2021 - Website part is done, only app frontend left
+
+## 21/5/2021 - App assets done, speedrun from 7.30pm to 9.30pm
