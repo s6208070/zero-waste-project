@@ -59,3 +59,6 @@ Need "Add garbage" Page
 ## 19/5/2021 - Website part is done, only app frontend left
 
 ## 21/5/2021 - App assets done, speedrun from 7.30pm to 9.30pm
+
+# 17/5/2021 Changes by Oak
+1. Application's frontend is completed.
