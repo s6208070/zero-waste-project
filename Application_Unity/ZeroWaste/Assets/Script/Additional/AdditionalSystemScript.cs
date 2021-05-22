@@ -7,9 +7,9 @@ using TMPro;
 public class AdditionalSystemScript : MonoBehaviour
 {
     public GameObject SystemManager;
-    public GameObject SizeText;
-    public GameObject OdorText;
-    public GameObject VisualText;
+    //public GameObject SizeText;
+    //public GameObject OdorText;
+    //public GameObject VisualText;
     public GameObject Database;
     public GameObject NearInput;
     public GameObject OtherInput;
@@ -25,23 +25,23 @@ public class AdditionalSystemScript : MonoBehaviour
         data.VisualLevel = InfoVisual;
         data.OdorLevel = InfoOdor;
         data.SizeLevel = InfoSize;
-        data.NearDetail = NearInput.GetComponent<InputField>().text;
-        data.description = OtherInput.GetComponent<InputField>().text;
+        data.NearDetail = NearInput.GetComponent<TMP_InputField>().text;
+        data.description = OtherInput.GetComponent<TMP_InputField>().text;
         //
         SystemManager.GetComponent<SystemScript>().BackPage(transform.parent.name);
     }
     public void SlideUpd(Slider inp){
         if(inp.name == "SizeSlider"){
             InfoSize = (int)inp.value;
-            SizeText.GetComponent<TextMeshProUGUI>().text = "[" + SizeCaption[(int)inp.value] + "]";
+            //SizeText.GetComponent<TextMeshProUGUI>().text = "[" + SizeCaption[(int)inp.value] + "]";
 
         }else if(inp.name == "OdorSlider"){
             InfoOdor = (int)inp.value;
-            OdorText.GetComponent<TextMeshProUGUI>().text = "[" + OdorCaption[(int)inp.value] + "]";
+            //OdorText.GetComponent<TextMeshProUGUI>().text = "[" + OdorCaption[(int)inp.value] + "]";
 
         }else if(inp.name == "VisualSlider"){
             InfoVisual = (int)inp.value;
-            VisualText.GetComponent<TextMeshProUGUI>().text = "[" + VisualCaption[(int)inp.value] + "]";
+            //VisualText.GetComponent<TextMeshProUGUI>().text = "[" + VisualCaption[(int)inp.value] + "]";
         }
     }
 }

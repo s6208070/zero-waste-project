@@ -50,12 +50,11 @@ public class HistorySystemScript : MonoBehaviour
             timestamp.GetComponent<TextMeshProUGUI>().text = tem[0] + "\n" + tem[1];
             location.GetComponent<TextMeshProUGUI>().text = ws[i].location;
             image.GetComponent<Image>().sprite = lsp[key];
-            int ck = 3;
-            if(ck == 0){
+            if(ws[i].status == "Not collected"){
                 status.GetComponent<Image>().sprite = Sred;
-            }else if(ck == 1){
+            }else if(ws[i].status == "In process"){
                 status.GetComponent<Image>().sprite = Syellow;
-            }else{
+            }else if(ws[i].status == "Successfully collected"){
                 status.GetComponent<Image>().sprite = Sgreen;
                 //Debug.Log("Done");
             }

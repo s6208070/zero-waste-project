@@ -12,9 +12,14 @@ public class SubmissionSystem : MonoBehaviour
     public GameObject ShowImage;
     public GameObject Database;
     public GameObject Custom;
+    public GameObject Gps;
+    public GameObject inpfield;
+    public Sprite tick;
+    public Sprite ttick;
     public TMP_InputField tambon;
     public TMP_InputField amphoe;
     public TMP_InputField province;
+    public bool ck = false;
     public string location = null;
     private string path;
     public void AdditionInfo(){
@@ -33,6 +38,19 @@ public class SubmissionSystem : MonoBehaviour
             Database.GetComponent<DataSystemScript>().photo = fileContent;
         }
     }
+    public void GetGPS(){
+        ck = false;
+        Gps.GetComponent<Image>().sprite = tick;
+        Custom.GetComponent<Image>().sprite = ttick;
+        inpfield.GetComponent<TMP_InputField>().interactable = false;
+    }
+    public void GetCustom(){
+        ck = true;
+        Gps.GetComponent<Image>().sprite = ttick;
+        Custom.GetComponent<Image>().sprite = tick;
+        inpfield.GetComponent<TMP_InputField>().interactable = true;
+
+    }
     public void Submit(){
         
         //timestamp
@@ -41,8 +59,8 @@ public class SubmissionSystem : MonoBehaviour
         Database.GetComponent<DataSystemScript>().timestamp = monthVar;
 
         //location
-        if(Custom.GetComponent<Toggle>().isOn == true){
-            var inp = Custom.transform.GetChild(2);
+        if(ck){
+            var inp = Custom.transform.GetChild(1);
             location = inp.GetComponent<TMP_InputField>().text;
         }else{
             //location = 
@@ -50,6 +68,8 @@ public class SubmissionSystem : MonoBehaviour
         if(location == null || location.Length == 0){
             Debug.Log("Fill Address");
             return;
+        }else {
+            Database.GetComponent<DataSystemScript>().location = location;
         }
 
         //ImageLocalPath
@@ -57,6 +77,7 @@ public class SubmissionSystem : MonoBehaviour
         
         //submit
         Database.GetComponent<DataSystemScript>().Submit(path);
+        SystemManager.GetComponent<SystemScript>().BackPage(transform.parent.name);
     }
     
 }
