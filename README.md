@@ -32,3 +32,30 @@ Need "Add garbage" Page
 1. Add Login Page frontend
 2. What is username and password lol
 
+# 15/5/2021 Changes by Heart
+1. Now connected to firebase. yay
+
+# 16/5/2021 Changes by Heart
+1. Connect Garbagedata to firestore
+2. Now can properly add image in binary form to storage
+3. Update Add garbage and Info page, now displaying along with Update and Delete button
+4. ~~Final {TODO} :~~ Add nearby garbage display
+
+## Backend on website is mainly done now, waiting for feedback
+
+# 17/5/2021 Changes by Heart
+1. Now change json database source from "Firestore" to "Realtime Database". Everything works as intended
+2. Append timestamp to image name. No more duplicate image problem, I guess
+3. Node module is fucked up. Reinstall it, still fucked up, gives up
+
+# 17/5/2021 Changes by Oak
+1. Application's backend is completed.
+
+
+# 18-19/5/2021 Changes by Mok
+1. Frontend of Search, GarbageData, and AddData are most likely done. yay!
+2. Website frontend is done
+
+## 19/5/2021 - Website part is done, only app frontend left
+
+## 21/5/2021 - App assets done, speedrun from 7.30pm to 9.30pm

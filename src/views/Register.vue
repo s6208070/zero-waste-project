@@ -2,6 +2,7 @@
   <v-app style = "overflow:auto;">
     <v-card 
       class = "back"
+      height = "780px"
     >
     <v-app-bar 
       app dark color = "grey-darken-4" 
@@ -16,39 +17,39 @@
       <v-main>
         <v-img
           src = "../assets/interashtive-logo.png"
-          max-height = "105"
+          max-height = "110"
           contain
         ></v-img>
-        <!-- <v-card
+        <v-card
           flat
           align = "center"
           class = "pt-7 white--text"
           color = "transparent"
-        >Welcome to our website.</v-card> -->
-        <Form @login-request="checkLogin" :name ="name" :name2="name2" />
+        >Create new account with email and password WITH 6 OR MORE LETTERS</v-card>
+        <Form @login-request="createAccount" :name ="name" :name2="name2" />
         <v-card
           flat
           align = "center"
-          class = "pt-8 pb-6 white--text"
+          class = "pt-7 white--text"
           color = "transparent"
-        >No account? <router-link to="/register" class = "white--text font-weight-bold"> Register here </router-link> </v-card>
+        >Already has an account? <router-link to="/" class = "white--text font-weight-bold"> Login here </router-link></v-card>
       </v-main>
-      </v-card>
-      <Footer/>
+    </v-card>
+    <Footer/>
   </v-app>
 </template>
 
 <script>
-import Form from "@/components/Form";
-import firebase  from "firebase";
+import Form from "@/components/Form"
+import firebase from "firebase"
 import Footer from "@/components/Footer";
 
   export default {
-    name: 'Login',
+    name: 'Register',
     data () {
       return{
-        name: "Login",
-        name2: "LOGIN"
+        name: "Register",
+        name2: "CREATE NEW ACCOUNT"
       }
     },
     components: {
@@ -56,14 +57,14 @@ import Footer from "@/components/Footer";
       Footer,
     },
     methods: {
-      async checkLogin(request){
+      async createAccount(request){
         try{
-          const login = await firebase.auth()
-          .signInWithEmailAndPassword(request.Username, request.Password)
-          console.log(login)
-          this.$router.push({name: "Search"})
+            const regis = await firebase.auth()
+            .createUserWithEmailAndPassword(request.Username, request.Password)
+            console.log(regis)
+            this.$router.push({name: "Search"})
         }catch(err){
-          alert(err)
+            alert(err)
         }
       },
       
@@ -76,6 +77,5 @@ import Footer from "@/components/Footer";
   .back {
     background-image: url(../assets/login-bg.png);
     background-size: cover;
-    height: 700px;
   }
 </style>

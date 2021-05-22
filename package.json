@@ -9,12 +9,18 @@
     "json-database": "json-server --watch db.json --port 5000"
   },
   "dependencies": {
+    "@vue/composition-api": "^1.0.0-rc.8",
     "core-js": "^3.6.5",
     "express": "^4.17.1",
     "filereader": "^0.10.3",
+    "firebase": "^8.6.1",
     "json-server": "^0.16.3",
+    "node-firestore-import-export": "^1.1.0",
+    "npx": "^10.2.2",
+    "reinstall": "^2.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.5.1",
+    "vuefire": "^2.2.5",
     "vuetify": "^2.4.0"
   },
   "devDependencies": {
@@ -28,6 +34,7 @@
     "sass": "^1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-vuetify": "~2.2.2",
+    "vue-particles": "^1.0.9",
     "vue-template-compiler": "^2.6.11",
     "vuetify-loader": "^1.7.0"
   },
