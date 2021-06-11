@@ -55,8 +55,21 @@ public class SubmissionSystem : MonoBehaviour
         
         //timestamp
         string monthVar = System.DateTime.Now.ToString("yyyy-MM-ddThh:mm:ss");
+        string yy = "";
+        for(int i =0; i<4;i++){
+            yy += monthVar[i];
+        }
+        var yyy = int.Parse(yy);
+        //yyy = Convert.ToInt32(yy);
+        if(yyy > 2560){
+            yyy -= 543;
+        }
+        string tt = yyy.ToString();
+        for(int i=4;i<monthVar.Length;i++){
+            tt += monthVar[i];
+        }
         //Debug.Log(monthVar);
-        Database.GetComponent<DataSystemScript>().timestamp = monthVar;
+        Database.GetComponent<DataSystemScript>().timestamp = tt;
 
         //location
         if(ck){
@@ -76,6 +89,9 @@ public class SubmissionSystem : MonoBehaviour
 
         
         //submit
+        Database.GetComponent<DataSystemScript>().province = province.text;
+        Database.GetComponent<DataSystemScript>().amphoe = amphoe.text;
+        Database.GetComponent<DataSystemScript>().tambon = tambon.text;
         Database.GetComponent<DataSystemScript>().Submit(path);
         SystemManager.GetComponent<SystemScript>().BackPage(transform.parent.name);
     }
