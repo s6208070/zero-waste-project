@@ -1,5 +1,4 @@
 # zero-waste-project
-lol
 https://interashtive.netlify.app/ 
 =======
 # Interashtive
